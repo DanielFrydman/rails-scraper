@@ -5,6 +5,26 @@
   background: #FFF;
 }
 
+.success-response {
+  white-space: pre-wrap;
+  overflow-x: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.error-response {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow-x: auto;
+  max-height: 200px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
 .group {
   position: relative;
   margin-bottom: 40px;
