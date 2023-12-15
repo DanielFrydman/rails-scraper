@@ -14,7 +14,7 @@ module V1
            HtmlFetcherException => e
       render json: { error: e }, status: :bad_request
     rescue StandardError => e
-      render json: { error: e }, status: :internal_server_error
+      render json: { error: "An unexpected error occurred: #{e.message}" }, status: :internal_server_error
     end
 
     private
