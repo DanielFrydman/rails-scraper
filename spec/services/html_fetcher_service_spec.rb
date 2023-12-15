@@ -20,11 +20,18 @@ RSpec.describe(HtmlFetcherService, type: :service) do
 
     context 'when something goes wrong' do
       context 'when we use an invalid api key' do
-        it 'returns non authorized json' do
+        it 'raises error' do
           VCR.use_cassette('html_fetcher_service/non_authorized') do
-            response = JSON.parse(subject)
-            expect(response['code']).to(eq('AUTH002'))
-            expect(response['detail']).to(include('The apikey sent does not match the expected format.'))
+            expect do
+              subject
+            end.to(
+              raise_error(
+                HtmlFetcherException,
+                'An error occurred while trying to fetch the HTML: The apikey ' \
+                'sent does not match the expected format. The apikey must match ' \
+                'the following regular expression: /^[0-9][a-f]{40}$/'
+              )
+            )
           end
         end
       end
