@@ -4,9 +4,9 @@ module V1
   class WebPageScraperController < ApplicationController
     def index
       service = WebPageScraperService.new(
-        url: url,
-        meta_tags: meta_tags,
-        css_selector_fields: css_selector_fields
+        url:,
+        meta_tags:,
+        css_selector_fields:
       )
 
       render json: { result: service.scrape }, status: :ok

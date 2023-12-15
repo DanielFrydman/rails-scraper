@@ -2,8 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe(Api::ProposalsController, type: :controller) do
-  describe 'GET /index' do
-    pending "add some examples (or delete) #{__FILE__}"
+RSpec.describe(V1::WebPageScraperController, type: :controller) do
+  describe 'GET #index' do
   end
 end

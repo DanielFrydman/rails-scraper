@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'nokogiri'
 
 class WebPageScraperService
@@ -16,7 +18,7 @@ class WebPageScraperService
 
     get_elements_from_css_selector_fields(document)
     get_elements_from_meta_tags(document)
-    
+
     @elements
   rescue HtmlFetcherException => e
     raise e

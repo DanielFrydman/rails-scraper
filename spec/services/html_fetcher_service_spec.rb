@@ -7,7 +7,7 @@ RSpec.describe(HtmlFetcherService, type: :service) do
     before do
       allow(Rails.application.config).to(receive(:proxy_key)).and_return('randon-key')
     end
-  
+
     subject { described_class.new.fetch(url: 'https://www.alza.cz/aeg-7000-prosteam-lfr73964cc-d7635493.htm') }
 
     context 'when everything goes well' do
@@ -38,9 +38,10 @@ RSpec.describe(HtmlFetcherService, type: :service) do
         end
 
         it 'raises error' do
-          expect {
+          expect do
             subject
-          }.to(raise_error(HtmlFetcherException, 'An error occurred while trying to fetch the HTML: Some random error'))
+          end.to(raise_error(HtmlFetcherException,
+                             'An error occurred while trying to fetch the HTML: Some random error'))
         end
       end
     end

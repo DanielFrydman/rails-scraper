@@ -16,10 +16,10 @@
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require "vcr"
+require 'vcr'
 
 VCR.configure do |c|
-  c.cassette_library_dir = "spec/vcr"
+  c.cassette_library_dir = 'spec/vcr'
   c.hook_into :faraday
 end
 
