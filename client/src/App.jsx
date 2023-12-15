@@ -7,6 +7,7 @@ function App() {
   const [urlAddress, setUrlAddress] = useState("");
   const [successResponse, setSuccessResponse] = useState("");
   const [errorResponse, setErrorResponse] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (index, event) => {
     const newInputs = [...inputs];
@@ -52,11 +53,10 @@ function App() {
     return { "url": urlAddress, "fields": { ...hash } }
   };
 
-  const handleScrapData = async (event) => {
-    event.preventDefault();
-
+  const handleScrapData = async () => {
     if (areInputsFilled) {
       try {
+        setLoading(true);
         const params = mountFieldParams();
         const response = await ApiClient().post("/web_page_scraper", params);
         const { data: { result } } = response;
@@ -67,6 +67,8 @@ function App() {
         setErrorResponse(error);
         setSuccessResponse(undefined);
         return error;
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -115,15 +117,17 @@ function App() {
           <div className="flex justify-between button-div">
             <button
               className="bg-blue-500 w-32 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              disabled={loading}
               onClick={handleAddInput}
             >
-              Add Field
+              {loading ? "Loading..." : "Add Field"}
             </button>
             <button
               className="bg-blue-500 w-32 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              onClick={(event) => handleScrapData(event)}
+              disabled={loading}
+              onClick={handleScrapData}
             >
-              Start Scrap
+              {loading ? "Loading..." : "Start Scrap"}
             </button>
           </div>
         </div>
