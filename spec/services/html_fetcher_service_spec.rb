@@ -41,14 +41,14 @@ RSpec.describe(HtmlFetcherService, type: :service) do
 
         before do
           stub_const('Faraday', faraday_double)
-          allow(faraday_double).to(receive(:new)).and_raise(StandardError, 'Some random error')
+          allow(faraday_double).to(receive(:new)).and_raise(StandardError, 'Something went wrong!')
         end
 
         it 'raises error' do
           expect do
             subject
           end.to(raise_error(HtmlFetcherException,
-                             'An error occurred while trying to fetch the HTML: Some random error'))
+                             'An error occurred while trying to fetch the HTML: Something went wrong!'))
         end
       end
     end

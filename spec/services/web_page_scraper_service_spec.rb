@@ -56,7 +56,7 @@ RSpec.describe(WebPageScraperService, type: :service) do
         VCR.use_cassette('html_fetcher_service/success') do
           hash = subject
           meta_hash = hash['meta']
-          hash['price'].slice!(2)
+          hash['price'].slice!(2)  # For some reason, the price has an empty space that isn't a real space
           expect(hash['price']).to(eq(price_excpectation))
           expect(hash['chat']).to(eq(chat_excpectation))
           expect(meta_hash['keywords']).to(eq(keywords_excpectation))
@@ -89,7 +89,7 @@ RSpec.describe(WebPageScraperService, type: :service) do
 
         before do
           stub_const('Faraday', faraday_double)
-          allow(faraday_double).to(receive(:new)).and_raise(StandardError, 'Some random error')
+          allow(faraday_double).to(receive(:new)).and_raise(StandardError, 'Something went wrong!')
         end
 
         it 'raises error' do
@@ -98,7 +98,7 @@ RSpec.describe(WebPageScraperService, type: :service) do
           end.to(
             raise_error(
               HtmlFetcherException,
-              'An error occurred while trying to fetch the HTML: Some random error'
+              'An error occurred while trying to fetch the HTML: Something went wrong!'
             )
           )
         end
@@ -110,7 +110,7 @@ RSpec.describe(WebPageScraperService, type: :service) do
         before do
           stub_const('HtmlFetcherService', html_fetcher_service)
           allow(html_fetcher_service).to(receive(:new)).and_return(html_fetcher_service)
-          allow(html_fetcher_service).to(receive(:fetch)).and_raise(StandardError, 'Some random error')
+          allow(html_fetcher_service).to(receive(:fetch)).and_raise(StandardError, 'Something went wrong!')
         end
 
         it 'raises error' do
@@ -119,7 +119,7 @@ RSpec.describe(WebPageScraperService, type: :service) do
           end.to(
             raise_error(
               WebPageScraperException,
-              'An error occurred while trying to scrape the HTML: Some random error'
+              'An error occurred while trying to scrape the HTML: Something went wrong!'
             )
           )
         end
