@@ -58,7 +58,7 @@ function App() {
     if (areInputsFilled) {
       try {
         const params = mountFieldParams();
-        const response = await ApiClient().post("/scraper", params);
+        const response = await ApiClient().post("/web_page_scraper", params);
         const { data: { result } } = response;
         setSuccessResponse(result);
         setErrorResponse(undefined);
