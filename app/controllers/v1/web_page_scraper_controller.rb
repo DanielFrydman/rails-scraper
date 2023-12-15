@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module V1
-  class ScraperController < ApplicationController
+  class WebPageScraperController < ApplicationController
     def index
       service = WebPageScraperService.new(
         url: url,
@@ -19,10 +19,6 @@ module V1
 
     private
 
-    def url
-      params.require(:scraper).require(:url)
-    end
-
     def meta_tags
       fields[:meta].to_a
     end
@@ -32,7 +28,15 @@ module V1
     end
 
     def fields
-      params.require(:scraper).permit(fields: {})[:fields]
+      web_page_scraper_params.permit(fields: {})[:fields]
+    end
+
+    def url
+      web_page_scraper_params.require(:url)
+    end
+
+    def web_page_scraper_params
+      params.require(:web_page_scraper)
     end
   end
 end
