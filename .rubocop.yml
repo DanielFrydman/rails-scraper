@@ -1,0 +1,17 @@
+AllCops:
+  TargetRubyVersion: 3.2.2
+  NewCops: enable
+  Include:
+    - spec/**/*.rb
+  Exclude:
+    - bin/bundle
+
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Metrics/MethodLength:
+  Max: 30
+  Exclude:
+    - 'spec/**/*'
