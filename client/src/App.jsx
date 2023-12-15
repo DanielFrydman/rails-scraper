@@ -131,14 +131,18 @@ function App() {
             </button>
           </div>
         </div>
-        <div className="mt-10">
-          {successResponse && (
-            <div className="success-response">
-              {JSON.stringify(successResponse, null, 2)}
-            </div>
-          )}
-        </div>
-        <div className="error-response mt-10">{errorResponse}</div>
+        {successResponse && (
+          <div className="mt-10">
+              <div className="success-response">
+                {JSON.stringify(successResponse, null, 2)}
+              </div>
+          </div>
+        )}
+        {errorResponse && (
+          <div className="error-response mt-10">
+            {errorResponse}
+          </div>
+        )}
       </form>
     </>
   );
