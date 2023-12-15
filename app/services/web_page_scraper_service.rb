@@ -29,7 +29,7 @@ class WebPageScraperService
   def get_elements_from_css_selector_fields(document)
     @css_selector_fields.each do |key, value|
       element = document.css(value).text
-      @elements[key] = element
+      @elements[key.to_s] = element
     end
   end
 
