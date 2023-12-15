@@ -4,7 +4,9 @@ import ApiClient from "./api/axios";
 
 function App() {
   const [inputs, setInputs] = useState([""]);
-  const [url_address, setUrlAddress] = useState("");
+  const [urlAddress, setUrlAddress] = useState("");
+  const [successResponse, setSuccessResponse] = useState("");
+  const [errorResponse, setErrorResponse] = useState("");
 
   const handleInputChange = (index, event) => {
     const newInputs = [...inputs];
@@ -47,7 +49,7 @@ function App() {
       return initialValue;
     }, { meta: [] });
 
-    return { "url": url_address, "fields": { ...hash } }
+    return { "url": urlAddress, "fields": { ...hash } }
   };
 
   const handleScrapData = async (event) => {
@@ -57,11 +59,14 @@ function App() {
       try {
         const params = mountFieldParams();
         const response = await ApiClient().post("/scraper", params);
-        const data = response.data;
-        return data;
-      } catch ({ response: { data } }) {
-        const { message } = data.error;
-        return message;
+        const { data: { result } } = response;
+        setSuccessResponse(result);
+        setErrorResponse(undefined);
+        return result;
+      } catch ({ response: { data: { error } } }) {
+        setErrorResponse(error);
+        setSuccessResponse(undefined);
+        return error;
       }
     }
   };
@@ -72,10 +77,10 @@ function App() {
         <div className="p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-200 dark:bg-gray-200 dark:border-gray-200 dark:hover:bg-gray-200">
           <div className="group mt-3">
             <input
-              id="url_address"
-              name="url_address"
+              id="urlAddress"
+              name="urlAddress"
               type="text"
-              value={url_address}
+              value={urlAddress}
               className="field-inputs w-full"
               onChange={(event) => setUrlAddress(event.target.value)}
               required
@@ -121,8 +126,15 @@ function App() {
               Start Scrap
             </button>
           </div>
-          {}
         </div>
+        <div className="mt-10">
+          {successResponse && (
+            <div className="success-response">
+              {JSON.stringify(successResponse, null, 2)}
+            </div>
+          )}
+        </div>
+        <div className="error-response mt-10">{errorResponse}</div>
       </form>
     </>
   );
