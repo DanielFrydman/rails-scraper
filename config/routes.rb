@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   namespace :v1 do
-    post '/scraper', to: 'scraper#index'
+    post '/web_page_scraper', to: 'web_page_scraper#index'
   end
 end
