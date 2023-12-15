@@ -5,6 +5,7 @@ AllCops:
     - spec/**/*.rb
   Exclude:
     - bin/bundle
+    - bin/setup
 
 
 Metrics/BlockLength:

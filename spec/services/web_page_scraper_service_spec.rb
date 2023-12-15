@@ -56,7 +56,7 @@ RSpec.describe(WebPageScraperService, type: :service) do
         VCR.use_cassette('html_fetcher_service/success') do
           hash = subject
           meta_hash = hash['meta']
-          hash['price'].slice!(2)  # For some reason, the price has an empty space that isn't a real space
+          hash['price'].slice!(2) # For some reason, the price has an empty space that isn't a real space
           expect(hash['price']).to(eq(price_excpectation))
           expect(hash['chat']).to(eq(chat_excpectation))
           expect(meta_hash['keywords']).to(eq(keywords_excpectation))
