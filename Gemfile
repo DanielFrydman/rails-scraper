@@ -37,6 +37,8 @@ gem 'bootsnap', require: false
 
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 
+gem 'redis'
+
 gem 'faraday'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
