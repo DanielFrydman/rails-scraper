@@ -29,7 +29,7 @@ RSpec.describe(HtmlFetcherService, type: :service) do
         end
       end
 
-      context 'when standard error occurs' do
+      context 'when a standard error occurs' do
         let(:faraday_double) { double('faraday') }
 
         before do
