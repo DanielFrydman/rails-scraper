@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe(HtmlFetcherService, type: :service) do
   describe '#fetch' do
     before do
-      allow(Rails.application.config).to(receive(:proxy_key)).and_return('randon-not-authorized-key')
+      allow(Rails.application.config).to(receive(:proxy_key)).and_return('randon-key')
     end
   
     subject { described_class.new.fetch(url: 'https://www.alza.cz/aeg-7000-prosteam-lfr73964cc-d7635493.htm') }
@@ -19,7 +19,7 @@ RSpec.describe(HtmlFetcherService, type: :service) do
     end
 
     context 'when something goes wrong' do
-      context 'with an invalid api key' do
+      context 'when we use an invalid api key' do
         it 'returns non authorized json' do
           VCR.use_cassette('html_fetcher_service/non_authorized') do
             response = JSON.parse(subject)
