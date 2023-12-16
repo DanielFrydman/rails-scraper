@@ -108,6 +108,7 @@ function App() {
               <button
                 type="button"
                 className="delete-icon"
+                disabled={loading}
                 onClick={() => handleRemoveInput(index)}
               >
                 X
@@ -133,15 +134,13 @@ function App() {
         </div>
         {successResponse && (
           <div className="mt-10">
-              <div className="success-response">
-                {JSON.stringify(successResponse, null, 2)}
-              </div>
+            <div className="success-response">
+              {JSON.stringify(successResponse, null, 2)}
+            </div>
           </div>
         )}
         {errorResponse && (
-          <div className="error-response mt-10">
-            {errorResponse}
-          </div>
+          <div className="error-response mt-10">{errorResponse}</div>
         )}
       </form>
     </>
