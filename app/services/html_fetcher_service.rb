@@ -29,7 +29,7 @@ class HtmlFetcherService
 
   def initialize_connection
     @connection = Faraday.new(
-      proxy: "http://#{Rails.application.config.proxy_key}:js_render=true&antibot=true@proxy.zenrows.com:8001",
+      proxy: "http://#{APP_CONFIG::PROXY_KEY}:js_render=true&antibot=true@proxy.zenrows.com:8001",
       ssl: { verify: false }
     )
     @connection.options.timeout = TIME_NEEDED_TO_THE_PROXY_WORK_CORRECTLY
