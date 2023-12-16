@@ -43,7 +43,7 @@ class WebPageScraperService
     end
   end
 
-  def raise_web_page_scraper_exception(e)
-    raise(WebPageScraperException, e.message)
+  def raise_web_page_scraper_exception(error)
+    raise(WebPageScraperException, error.message)
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 CONFIG = if Rails.env.production?
            YAML.load_file(Rails.root.join('app.yml'))[Rails.env]
          else

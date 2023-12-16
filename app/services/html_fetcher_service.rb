@@ -3,9 +3,9 @@
 require 'faraday'
 
 class HtmlFetcherService
-  NOT_AUTHORIZED_TOKEN = 'AUTH'.freeze
+  NOT_AUTHORIZED_TOKEN = 'AUTH'
   CACHE_EXPIRATION_TIME = 30.minutes
-  TIME_NEEDED_TO_THE_PROXY_WORK_CORRECTLY = 180.freeze
+  TIME_NEEDED_TO_THE_PROXY_WORK_CORRECTLY = 180
 
   def initialize
     @cache = Rails.application.config.redis
@@ -18,7 +18,7 @@ class HtmlFetcherService
 
     @response_body = @connection.get(url, nil, nil).body
     raise_not_authorized_error if connection_not_authorized?
-  
+
     @cache.setex(url, CACHE_EXPIRATION_TIME, @response_body)
     @response_body
   rescue StandardError => e
@@ -40,8 +40,8 @@ class HtmlFetcherService
     raise(StandardError, parsed_body['detail'])
   end
 
-  def raise_html_fetcher_exception(e)
-    raise(HtmlFetcherException, e.message)
+  def raise_html_fetcher_exception(error)
+    raise(HtmlFetcherException, error.message)
   end
 
   def connection_not_authorized?

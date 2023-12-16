@@ -1,12 +1,13 @@
 AllCops:
   TargetRubyVersion: 3.2.2
   NewCops: enable
-  Include:
-    - spec/**/*.rb
   Exclude:
     - bin/*
     - vendor/bundle/**/*
 
+Naming/ClassAndModuleCamelCase:
+  Exclude:
+    - 'config/initializers/**/*.rb'
 
 Metrics/BlockLength:
   Exclude:
@@ -16,3 +17,8 @@ Metrics/MethodLength:
   Max: 30
   Exclude:
     - 'spec/**/*'
+
+Style/Documentation:
+  Exclude:
+    - 'app/**/*.rb'
+    - 'config/**/*.rb'
