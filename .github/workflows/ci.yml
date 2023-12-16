@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - "5432:5432"
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        volumes:
+          - postgres_data:/var/lib/postgresql/data
+
+      redis:
+        image: redis:latest
+        ports:
+          - "6379:6379"
+
+      redis_test:
+        image: redis:latest
+        command: redis-server --port 6380
+        ports:
+          - "6380:6380"
+
+    env:
+      RAILS_ENV: test
+      REDIS_TEST_URL: redis://localhost:6380
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Build and Test
+        run: |
+          docker-compose -f docker-compose.yml build
+          docker-compose -f docker-compose.yml run --rm app bin/rails db:create db:migrate
+          docker-compose -f docker-compose.yml run --rm app bin/rails test
+
+volumes:
+  postgres_data:
