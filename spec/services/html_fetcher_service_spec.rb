@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe(HtmlFetcherService, type: :service) do
   describe '#fetch' do
     before do
-      allow(Rails.application.config).to(receive(:proxy_key)).and_return('randon-key')
+      stub_const('APP_CONFIG::PROXY_KEY', 'randon-key')
       Rails.application.config.redis.flushall
     end
 
