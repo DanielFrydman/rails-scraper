@@ -29,6 +29,14 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Display network information
+        run: |
+          ifconfig
+          netstat -lntu
+
+      - name: Display environment variables
+        run: printenv
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
