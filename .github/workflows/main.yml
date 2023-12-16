@@ -43,7 +43,8 @@ jobs:
       - name: Clean up Docker containers and networks
         run: |
           docker-compose -f docker-compose.yml down -v
-          docker network prune -f
+          docker system prune -af
+          docker-compose -f docker-compose.yml up -d --build
 
       - name: Build and Test
         run: |
