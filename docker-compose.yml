@@ -15,5 +15,11 @@ services:
     ports:
       - "6379:6379"
 
+  redis_test:
+    image: redis:latest
+    command: redis-server --port 6380
+    ports:
+      - "6380:6380"
+
 volumes:
   postgres_data:
