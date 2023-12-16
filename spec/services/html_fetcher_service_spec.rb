@@ -6,6 +6,7 @@ RSpec.describe(HtmlFetcherService, type: :service) do
   describe '#fetch' do
     before do
       allow(Rails.application.config).to(receive(:proxy_key)).and_return('randon-key')
+      Rails.application.config.redis.flushall
     end
 
     subject { described_class.new.fetch(url: 'https://www.alza.cz/aeg-7000-prosteam-lfr73964cc-d7635493.htm') }
@@ -41,7 +42,10 @@ RSpec.describe(HtmlFetcherService, type: :service) do
 
         before do
           stub_const('Faraday', faraday_double)
-          allow(faraday_double).to(receive(:new)).and_raise(StandardError, 'Something went wrong!')
+          allow(faraday_double).to(receive(:new)).and_return(faraday_double)
+          allow(faraday_double).to(receive(:options)).and_return(faraday_double)
+          allow(faraday_double).to(receive(:timeout=)).and_return(faraday_double)
+          allow(faraday_double).to(receive(:get)).and_raise(StandardError, 'Something went wrong!')
         end
 
         it 'raises error' do

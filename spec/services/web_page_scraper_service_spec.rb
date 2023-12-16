@@ -6,6 +6,7 @@ RSpec.describe(WebPageScraperService, type: :service) do
   describe '#scrape' do
     before do
       allow(Rails.application.config).to(receive(:proxy_key)).and_return('randon-key')
+      Rails.application.config.redis.flushall
     end
 
     subject do
@@ -89,7 +90,10 @@ RSpec.describe(WebPageScraperService, type: :service) do
 
         before do
           stub_const('Faraday', faraday_double)
-          allow(faraday_double).to(receive(:new)).and_raise(StandardError, 'Something went wrong!')
+          allow(faraday_double).to(receive(:new)).and_return(faraday_double)
+          allow(faraday_double).to(receive(:options)).and_return(faraday_double)
+          allow(faraday_double).to(receive(:timeout=)).and_return(faraday_double)
+          allow(faraday_double).to(receive(:get)).and_raise(StandardError, 'Something went wrong!')
         end
 
         it 'raises error' do

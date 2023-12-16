@@ -19,15 +19,19 @@ RSpec.describe(V1::WebPageScraperController, type: :controller) do
 
     subject { post(:index, params:) }
 
+    before do
+      Rails.application.config.redis.flushall
+    end
+
     context 'when everything goes well' do
       let(:expected_response) do
-        '{\"result\":{\"chat\":\"\\n\\n\\n\\n\\n\\n\\n\\n\\nVáš osobní asistent' \
+        '{"result":{"chat":"\\n\\n\\n\\n\\n\\n\\n\\n\\nVáš osobní asistent' \
           '\\n\\n\\n\\n\\n\\nAlza Premium\\n\\n\\n\\n\\n\\n\\n\\n\\nNapsat dotaz\\n' \
           '\\n\\n\\nZavolejte mi\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\nNová konverzace\\n' \
           '\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n' \
-          '\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\",\"price\":\"18390,-\",' \
-          '\"meta\":{\"keywords\":\"AEG,7000,ProSteam®,LFR73964CC,Automatické pračky,' \
-          'Automatické pračky AEG,Chytré pračky,Chytré pračky AEG\",\"application-name\":\"Alza.cz\"}}}'
+          '\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n","price":"18390,-",' \
+          '"meta":{"keywords":"AEG,7000,ProSteam®,LFR73964CC,Automatické pračky,' \
+          'Automatické pračky AEG,Chytré pračky,Chytré pračky AEG","application-name":"Alza.cz"}}}'
       end
 
       it 'returns a hash with all required elements' do
