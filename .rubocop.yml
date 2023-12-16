@@ -4,8 +4,8 @@ AllCops:
   Include:
     - spec/**/*.rb
   Exclude:
-    - bin/bundle
-    - bin/setup
+    - bin/*
+    - vendor/bundle/**/*
 
 
 Metrics/BlockLength:
