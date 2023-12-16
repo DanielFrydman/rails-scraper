@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      build:
-        context: .
-        dockerfile: Dockerfile
       postgres:
         image: postgres:latest
         env:

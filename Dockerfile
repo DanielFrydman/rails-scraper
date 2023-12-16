@@ -58,6 +58,3 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
 CMD ["./bin/rails", "server"]
-
-FROM redis:latest
-CMD ["redis-server", "--port", "6380"]
