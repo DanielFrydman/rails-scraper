@@ -45,7 +45,7 @@ jobs:
         working-directory: ${{ github.workspace }}
         env:
           RAILS_ENV: test
-        run: bin/rails db:create db:schema:load
+        run: bin/rails db:create db:migrate db:schema:load
 
       - name: Run tests
         run: bundle exec rspec
