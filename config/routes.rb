@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   namespace :v1 do
     post '/web_page_scraper', to: 'web_page_scraper#index'
   end
+
+  get '*path', to: 'fallback#index', constraints: ->(req) { !req.xhr? && req.format.html? }
 end
