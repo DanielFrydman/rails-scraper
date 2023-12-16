@@ -40,6 +40,11 @@ jobs:
           ruby-version: 3.2.2
           bundler-cache: true
 
+      - name: Clean up Docker containers and networks
+        run: |
+          docker-compose -f docker-compose.yml down -v
+          docker network prune -f
+
       - name: Build and Test
         run: |
           docker-compose -f docker-compose.yml build
