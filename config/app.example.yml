@@ -8,4 +8,4 @@ development:
 
 test:
   proxy_key: 'your-key'
-  redis_url: 'redis://localhost:6380'
+  redis_url: 'redis://localhost:6379'
