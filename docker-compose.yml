@@ -22,6 +22,8 @@ services:
       - "6380:6380"
 
   app:
+    build:
+      context: .
     depends_on:
       - db
       - redis_test
