@@ -32,4 +32,5 @@
 /config/master.key
 
 .byebug_history
-.env
+
+/config/app.yml
