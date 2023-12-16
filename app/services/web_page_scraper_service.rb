@@ -14,7 +14,7 @@ class WebPageScraperService
 
   def scrape
     html = @html_fetcher_service.fetch(url: @url)
-    document = Nokogiri::HTML(html)
+    document = @html_parser::HTML(html)
 
     get_elements_from_css_selector_fields(document)
     get_elements_from_meta_tags(document)
