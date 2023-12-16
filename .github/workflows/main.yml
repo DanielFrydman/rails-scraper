@@ -9,23 +9,40 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:latest
+        ports:
+          - "5432:5432"
+      redis:
+        image: redis:latest
+        ports:
+          - "6379:6379"
     env:
       RAILS_ENV: test
       REDIS_TEST_URL: redis://localhost:6380
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
-
+        uses: actions/checkout@v3
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2.2
           bundler-cache: true
+      - name: Set up database schema
+        run: bin/rails db:setup
+      - name: Run tests
+        run: bin/rake
 
-      - name: Build and Test
-        run: |
-          docker-compose -f docker-compose.yml build
-          docker-compose -f docker-compose.yml run --rm app bundle install
-          docker-compose -f docker-compose.yml run --rm app bin/rails db:create db:migrate
-          docker-compose -f docker-compose.yml run --rm app bin/rails test
-
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
+      - name: Lint Ruby files
+        run: bundle exec rubocop
