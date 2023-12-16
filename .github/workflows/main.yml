@@ -9,45 +9,44 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+
     services:
       postgres:
         image: postgres:latest
-        ports:
-          - "5432:5432"
         env:
-          POSTGRES_DB: test
-          POSTGRES_USER: user
-          POSTGRES_PASSWORD: password
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: rails_scraper_test
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
       redis:
         image: redis:latest
-        ports:
-          - "6380:6380"
-    env:
-      RAILS_ENV: test
-      REDIS_TEST_URL: redis://localhost:6380
-      DATABASE_URL: "postgres://user:password@localhost:5432/test"
+  
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.2.2
-          bundler-cache: true
-      - name: Set up database schema
-        run: bin/rails db:setup
-      - name: Run tests
-        run: bin/rake
 
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2.2
           bundler-cache: true
-      - name: Lint Ruby files
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Copy config files
+        run: |
+          mv ${{ github.workspace }}/config/database.ci.yml ${{ github.workspace }}/config/database.yml
+          mv ${{ github.workspace }}/config/app.example.yml ${{ github.workspace }}/config/app.yml
+
+      - name: Setup DB
+        working-directory: ${{ github.workspace }}
+        env:
+          RAILS_ENV: test
+        run: bin/rails db:create db:schema:load
+
+      - name: Run tests
+        run: bundle exec rspec
+
+      - name: Run linter
         run: bundle exec rubocop
