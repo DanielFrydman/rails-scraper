@@ -33,6 +33,7 @@ COPY . .
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
+ENV REDIS_URL='redis://localhost:6379/0'
 
 # Final stage for app image
 FROM base
