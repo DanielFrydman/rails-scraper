@@ -8,16 +8,16 @@ class WebPageScraperService
     @meta_tags = meta_tags
     @css_selector_fields = css_selector_fields
     @elements = {}
-    @html_parser = Nokogiri
     @html_fetcher_service = HtmlFetcherService.new
   end
 
   def scrape
     html = @html_fetcher_service.fetch(url: @url)
-    document = @html_parser::HTML(html)
+    document = Nokogiri::HTML(html)
 
     get_elements_from_css_selector_fields(document)
     get_elements_from_meta_tags(document)
+    save_scraped_data
 
     @elements
   rescue HtmlFetcherException => e
@@ -27,6 +27,15 @@ class WebPageScraperService
   end
 
   private
+
+  def save_scraped_data
+    ScrapedInfo.create!(
+      url: @url,
+      data: @elements
+    )
+  rescue StandardError => e
+    raise("Scraped information not saved because #{e}")
+  end
 
   def get_elements_from_css_selector_fields(document)
     @css_selector_fields.each do |key, value|
