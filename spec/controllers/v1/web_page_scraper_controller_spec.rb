@@ -48,6 +48,12 @@ RSpec.describe(V1::WebPageScraperController, type: :controller) do
           expect(response).to(have_http_status(:ok))
         end
       end
+
+      it 'saves the data in a model' do
+        VCR.use_cassette('html_fetcher_service/success') do
+          expect { subject }.to(change { ScrapedInfo.count }.by(1))
+        end
+      end
     end
 
     context 'when something goes wrong' do
