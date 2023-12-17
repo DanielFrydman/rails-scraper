@@ -1,5 +1,6 @@
 ## :rocket: Project
 The developed application is a standalone webscraper made in Ruby on Rails and React.
+<br>
 Its goal is to assist the user in enhancing their database through the desired tags.
 
 ## :tada: Features
@@ -39,8 +40,11 @@ Its goal is to assist the user in enhancing their database through the desired t
 - `axios`: Added to make HTTP requests
 
 ## :pushpin: Information
-You can test the application in the following URL: **https://rails-scraper.onrender.com**
-This project uses ZenRows and the key will expire in 12 days and have limited use, you must hurry up. The PostgreSQL and Redis DB in Render will be erased after 90 days.
+You can test the application in the following URL: **https://rails-scraper.onrender.com**.
+<br>
+This project uses [ZenRows](https://www.zenrows.com/). and the key will expire in 12 days and have limited use, you must hurry up.
+<br>
+The PostgreSQL and Redis DB in Render will be erased after 90 days.
 
 ## 📁 Access to the project
 ```shell
@@ -56,7 +60,14 @@ cd rails-scraper
 ```shell
 docker compose up -d
 ```
-- It will start the PostgreSQL, Redis and Rails Web Server. **After the containers are up and running, you must access the database.yml and uncomment the lines from 22 to 25. You might have noticed that in config folder, exists a file app.example.yml, you will need to copy/paste without the .example, just app.yml.** In this file, you will find the following code:
+It will start the PostgreSQL, Redis and Rails Web Server.
+<br>
+- **After the containers are up and running, you must access the database.yml and uncomment the lines from 22 to 25. These lines are commented so the Render deploy can work.**
+- **You might have noticed that in config folder, exists a file app.example.yml, you will need to copy/paste without the .example, just app.yml.**
+<br>
+In this file, you will find the following code:
+<br>
+
 ```
 development:
   proxy_key: 'your-key'
@@ -66,12 +77,15 @@ test:
   proxy_key: 'your-key'
   redis_url: 'redis://localhost:6379'
 ```
-In order to the project run in your machine you will need a proxy key from [ZenRows](https://www.zenrows.com/). If you have a Google Developer account you can apply for a free key, if you don't, you can use mine:
+In order to the project run in your machine you will need a proxy key from [ZenRows](https://www.zenrows.com/).
+<br>
+If you have a Google Developer account you can apply for a free key, if you don't, you can use mine:
 ```
 45aa2694b60a9526092b6329811c7f8bdf1f2ed1
 ```
-The key will expire in 12 days and have limited use, hurry up. Once the key is in development.proxy_key it will be up and running.
-Run
+The key will expire in 12 days and have limited use, hurry up.
+<br>
+Once the key is in development.proxy_key it will be up and running. Now, run:
 ```shell
 rails db:setup
 ```
@@ -83,11 +97,11 @@ rails server
 ```shell
 cd client
 ```
-Then install the dependencies with:
+- Then install the dependencies with:
 ```shell
 npm install
 ```
-Now, you can start the server by typing:
+- Now, you can start the server by typing:
 ```shell
 npm dev run
 ```
