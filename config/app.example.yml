@@ -1,7 +1,3 @@
-production:
-  proxy_key: 'your-key'
-  redis_url: 'redis-url'
-
 development:
   proxy_key: 'your-key'
   redis_url: 'redis://localhost:6380'
