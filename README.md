@@ -1,12 +1,12 @@
-## Project:
+## :rocket: Project:
 The developed application is a standalone webscraper made in Ruby on Rails and React.
 Its goal is to assist the user in enhancing their database through the desired tags.
 
-## Features
+## :tada: Features
 - Input for adding the desired URL
 - Input fields for data extraction, which can be classes or the names of the meta tags (they work combined as well!)
 
-## Used Technologies
+## :technologist: Used Technologies
 - `Ruby`: Version 3.2.2
 - `Rails`: Version 7.1.2
 - `PostgreSQL`: Latest
@@ -20,7 +20,7 @@ Its goal is to assist the user in enhancing their database through the desired t
 - `Npm`: Version 10.2.3
 - `Git`: Version 2.25.1
 
-## Gems added
+## :wrench: Gems added
 - `rspec-rails`: Added for testing the backend
 - `factory_bot_rails`: Added to create factories for testing
 - `faker`: Added to create fake data for testing
@@ -33,12 +33,12 @@ Its goal is to assist the user in enhancing their database through the desired t
 - `faker`: Added to generate fake data to the tests
 - `simplecov`: Added to check test coverage report
 
-## Libs added
+## :hammer: Libs added
 - `eslint`: Added to lint the project (to ensure the same code style)
 - `cypress`: Added for testing the frontend
 - `axios`: Added to make HTTP requests
 
-## Information
+## :pushpin: Information
 You can test the application in the following URL: **https://rails-scraper.onrender.com**
 This project uses ZenRows and the key will expire in 12 days and have limited use, you must hurry up. The PostgreSQL and Redis DB in Render will be erased after 90 days.
 
