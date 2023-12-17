@@ -66,7 +66,7 @@ test:
   proxy_key: 'your-key'
   redis_url: 'redis://localhost:6379'
 ```
-In order to the project run in your machine you will need a proxy key from ZenRows(https://www.zenrows.com/). If you have a Google Developer account you can apply for a free key, if you don't, you can use mine:
+In order to the project run in your machine you will need a proxy key from [ZenRows](https://www.zenrows.com/). If you have a Google Developer account you can apply for a free key, if you don't, you can use mine:
 ```
 45aa2694b60a9526092b6329811c7f8bdf1f2ed1
 ```
