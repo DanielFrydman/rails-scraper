@@ -1,4 +1,4 @@
-## :rocket: Project:
+## :rocket: Project
 The developed application is a standalone webscraper made in Ruby on Rails and React.
 Its goal is to assist the user in enhancing their database through the desired tags.
 
