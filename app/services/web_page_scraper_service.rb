@@ -3,10 +3,10 @@
 require 'nokogiri'
 
 class WebPageScraperService
-  def initialize(url:, meta_tags: [], css_selector_fields: {})
+  def initialize(url:, meta_tags:, css_selector_fields:)
     @url = url
-    @meta_tags = meta_tags
-    @css_selector_fields = css_selector_fields
+    @meta_tags = meta_tags || []
+    @css_selector_fields = css_selector_fields || {}
     @elements = {}
     @html_fetcher_service = HtmlFetcherService.new
   end
