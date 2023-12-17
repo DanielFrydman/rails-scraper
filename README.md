@@ -42,7 +42,7 @@ Its goal is to assist the user in enhancing their database through the desired t
 ## :pushpin: Information
 You can test the application in the following URL: **https://rails-scraper.onrender.com**.
 <br>
-This project uses [ZenRows](https://www.zenrows.com/). and the key will expire in 12 days and have limited use, you must hurry up.
+This project uses [ZenRows](https://www.zenrows.com/). My key will expire in 12 days and have limited use, you must hurry up.
 <br>
 The PostgreSQL and Redis DB in Render will be erased after 90 days.
 
@@ -83,7 +83,7 @@ If you have a Google Developer account you can apply for a free key, if you don'
 ```
 45aa2694b60a9526092b6329811c7f8bdf1f2ed1
 ```
-The key will expire in 12 days and have limited use, hurry up.
+My key will expire in 12 days and have limited use, hurry up.
 <br>
 Once the key is in development.proxy_key it will be up and running. Now, run:
 ```shell
