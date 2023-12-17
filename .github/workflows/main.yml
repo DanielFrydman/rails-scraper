@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-test:
+  backend:
     runs-on: ubuntu-latest
 
     services:
@@ -54,3 +54,25 @@ jobs:
 
       - name: Run linter
         run: bundle exec rubocop
+
+  frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+
+    - name: Install dependencies
+      run: |
+        cd client
+        npm install
+
+    - name: Run Cypress tests
+      run: |
+        cd client
+        npx cypress run --component
