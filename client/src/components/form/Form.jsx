@@ -126,6 +126,7 @@ function Form() {
           ))}
           <div className="flex justify-between button-div">
             <button
+              id="addFieldButton"
               className="bg-blue-500 w-32 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               disabled={loading}
               onClick={handleAddInput}
@@ -133,6 +134,7 @@ function Form() {
               {loading ? "Loading..." : "Add Field"}
             </button>
             <button
+              id="startScrapButton"
               className="bg-blue-500 w-32 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               disabled={loading}
               onClick={handleScrapData}
