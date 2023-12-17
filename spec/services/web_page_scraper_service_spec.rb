@@ -9,14 +9,19 @@ RSpec.describe(WebPageScraperService, type: :service) do
       Rails.application.config.redis.flushall
     end
 
+    let(:meta_tags) { %w[keywords application-name] }
+    let(:css_selector_fields) do
+      {
+        'price' => '.price-box__price',
+        'chat' => '.chat-wrapper'
+      }
+    end
+
     subject do
       described_class.new(
         url: 'https://www.alza.cz/aeg-7000-prosteam-lfr73964cc-d7635493.htm',
-        meta_tags: %w[keywords application-name],
-        css_selector_fields: {
-          'price' => '.price-box__price',
-          'chat' => '.chat-wrapper'
-        }
+        meta_tags: meta_tags,
+        css_selector_fields: css_selector_fields
       ).scrape
     end
 
@@ -111,6 +116,26 @@ RSpec.describe(WebPageScraperService, type: :service) do
               'An error occurred while trying to fetch the HTML: Something went wrong!'
             )
           )
+        end
+      end
+
+      context 'when the user don\'t send data to fetch from the HTML' do
+        let(:meta_tags) { nil }
+        let(:css_selector_fields) { nil }
+
+        it 'raises error' do
+          VCR.use_cassette('html_fetcher_service/success') do
+            expect do
+              subject
+            end.to(
+              raise_error(
+                WebPageScraperException,
+                'An error occurred while trying to scrape the HTML: ' \
+                'Scraped information not saved because Validation failed: ' \
+                'Data can\'t be blank'
+              )
+            )
+          end
         end
       end
 
