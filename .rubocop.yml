@@ -4,6 +4,7 @@ AllCops:
   Exclude:
     - bin/*
     - vendor/bundle/**/*
+    - db/**/*
 
 Naming/ClassAndModuleCamelCase:
   Exclude:
@@ -17,18 +18,6 @@ Metrics/MethodLength:
   Max: 30
   Exclude:
     - 'spec/**/*'
-
-Style/StringLiterals:
-  Exclude:
-    - 'db/schema.rb'
-
-Style/FrozenStringLiteralComment:
-  Exclude:
-    - 'db/schema.rb'
-
-Layout/EmptyLinesAroundBlockBody:
-  Exclude:
-    - 'db/schema.rb'
 
 Style/Documentation:
   Exclude:

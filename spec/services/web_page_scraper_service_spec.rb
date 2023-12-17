@@ -20,8 +20,8 @@ RSpec.describe(WebPageScraperService, type: :service) do
     subject do
       described_class.new(
         url: 'https://www.alza.cz/aeg-7000-prosteam-lfr73964cc-d7635493.htm',
-        meta_tags: meta_tags,
-        css_selector_fields: css_selector_fields
+        meta_tags:,
+        css_selector_fields:
       ).scrape
     end
 
