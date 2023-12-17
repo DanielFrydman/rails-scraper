@@ -63,4 +63,5 @@ end
 
 group :test do
   gem 'vcr'
+  gem 'simplecov', require: false
 end
