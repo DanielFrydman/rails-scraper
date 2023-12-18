@@ -31,7 +31,6 @@ Its goal is to assist the user in enhancing their database through the desired t
 - `nokogiri`: Added to read HTMLs and search for data
 - `faraday`: Added to make requests to the sent URLs
 - `vcr`: Added to mock requests and avoid making external requests when running tests again
-- `faker`: Added to generate fake data to the tests
 - `simplecov`: Added to check test coverage report
 
 ## :hammer: Libs added
