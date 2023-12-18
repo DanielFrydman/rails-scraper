@@ -60,7 +60,7 @@ cd rails-scraper
 ```shell
 docker compose up -d
 ```
-It will start the PostgreSQL, Redis and Rails Web Server.
+It will start the PostgreSQL and Redis.
 <br>
 - **After the containers are up and running, you must access the database.yml and uncomment the lines from 22 to 25. These lines are commented so the Render deploy can work.**
 - **You might have noticed that in config folder, exists a file app.example.yml, you will need to copy/paste without the .example, just app.yml.**
