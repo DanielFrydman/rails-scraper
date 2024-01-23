@@ -44,6 +44,8 @@ You can test the application in the following URL: **https://rails-scraper.onren
 This project uses [ZenRows](https://www.zenrows.com/). My key will expire in 12 days and have limited use, you must hurry up.
 <br>
 The PostgreSQL and Redis DB in Render will be erased after 90 days.
+<br>
+***Please be aware that the link may be inactive, depending on when you access my repository, as the Render database associated with the free version could potentially have expired. Thank you for your understanding.***
 
 ## 📁 Access to the project
 ```shell
