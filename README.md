@@ -57,7 +57,7 @@ git@github.com:DanielFrydman/rails-scraper.git
 ```shell
 cd react-rails-scraper
 ```
-- Into the rails-scraper folder,  you'll find the docker-compose.yml. Run with:
+- Into the react-rails-scraper folder, you'll find the docker-compose.yml. Run with:
 ```shell
 docker compose up -d
 ```
