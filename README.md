@@ -55,7 +55,7 @@ git@github.com:DanielFrydman/rails-scraper.git
 ## 🐳 Run the project with Docker
 - In order to run the project you must: 
 ```shell
-cd rails-scraper
+cd react-rails-scraper
 ```
 - Into the rails-scraper folder,  you'll find the docker-compose.yml. Run with:
 ```shell
